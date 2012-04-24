@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		580BF6AB15471C5800EC8748 /* libASPEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 580BF6A915471BE900EC8748 /* libASPEngine.a */; };
 		580BF6AE15471C9200EC8748 /* FCGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 580BF6AD15471C9200EC8748 /* FCGameViewController.m */; };
 		586BBA7F15470A2A00332DED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 586BBA7E15470A2A00332DED /* UIKit.framework */; };
 		586BBA8115470A2A00332DED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 586BBA8015470A2A00332DED /* Foundation.framework */; };
@@ -15,13 +16,10 @@
 		586BBA8B15470A2A00332DED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 586BBA8A15470A2A00332DED /* main.m */; };
 		586BBA8F15470A2A00332DED /* FCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 586BBA8E15470A2A00332DED /* FCAppDelegate.m */; };
 		58B17C47154719BA00EEBF36 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58B17C46154719BA00EEBF36 /* Storyboard.storyboard */; };
-		58EDA20D154739F300595BC8 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EDA20C154739F300595BC8 /* GLKit.framework */; };
-		58EDA21015473A1900595BC8 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EDA20F15473A1900595BC8 /* OpenGLES.framework */; };
-		58EDA21215473A1D00595BC8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EDA21115473A1D00595BC8 /* QuartzCore.framework */; };
-		58EDA24315473D9B00595BC8 /* ASPEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EDA24115473D9200595BC8 /* ASPEngine.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		580BF6A915471BE900EC8748 /* libASPEngine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libASPEngine.a; path = "/Users/aspcartman/Documents/xCode Projects/FatCat-Studio/Demo/../DerivedData/First Game/Build/Products/Debug-iphoneos/libASPEngine.a"; sourceTree = "<absolute>"; };
 		580BF6AC15471C9100EC8748 /* FCGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCGameViewController.h; sourceTree = "<group>"; };
 		580BF6AD15471C9200EC8748 /* FCGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCGameViewController.m; sourceTree = "<group>"; };
 		586BBA7A15470A2A00332DED /* Game1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game1.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,10 +33,7 @@
 		586BBA8D15470A2A00332DED /* FCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCAppDelegate.h; sourceTree = "<group>"; };
 		586BBA8E15470A2A00332DED /* FCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCAppDelegate.m; sourceTree = "<group>"; };
 		58B17C46154719BA00EEBF36 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
-		58EDA20C154739F300595BC8 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		58EDA20F15473A1900595BC8 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		58EDA21115473A1D00595BC8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		58EDA24115473D9200595BC8 /* ASPEngine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ASPEngine.framework; path = ../ASPEngine/Products/ASPEngine.framework; sourceTree = "<group>"; };
+		58B17C4C15471AC800EEBF36 /* ASPEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASPEngine.h; path = "/Users/aspcartman/Documents/xCode Projects/FatCat-Studio/Demo/../ASPEngine/ASPEngine/ASPEngine.h"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,13 +41,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58EDA24315473D9B00595BC8 /* ASPEngine.framework in Frameworks */,
-				58EDA21215473A1D00595BC8 /* QuartzCore.framework in Frameworks */,
-				58EDA21015473A1900595BC8 /* OpenGLES.framework in Frameworks */,
-				58EDA20D154739F300595BC8 /* GLKit.framework in Frameworks */,
 				586BBA7F15470A2A00332DED /* UIKit.framework in Frameworks */,
 				586BBA8115470A2A00332DED /* Foundation.framework in Frameworks */,
 				586BBA8315470A2A00332DED /* CoreGraphics.framework in Frameworks */,
+				580BF6AB15471C5800EC8748 /* libASPEngine.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,10 +71,8 @@
 		586BBA7D15470A2A00332DED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				58EDA24115473D9200595BC8 /* ASPEngine.framework */,
-				58EDA21115473A1D00595BC8 /* QuartzCore.framework */,
-				58EDA20F15473A1900595BC8 /* OpenGLES.framework */,
-				58EDA20C154739F300595BC8 /* GLKit.framework */,
+				58B17C4C15471AC800EEBF36 /* ASPEngine.h */,
+				580BF6A915471BE900EC8748 /* libASPEngine.a */,
 				586BBA7E15470A2A00332DED /* UIKit.framework */,
 				586BBA8015470A2A00332DED /* Foundation.framework */,
 				586BBA8215470A2A00332DED /* CoreGraphics.framework */,
@@ -246,17 +236,12 @@
 		586BBA9315470A2A00332DED /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../ASPEngine/Products\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Game1/Game1-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../ASPEngine/Products/ASPEngine.framework/Headers/\"";
 				INFOPLIST_FILE = "Game1/Game1-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../DerivedData/FatCat/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../DerivedData/First Game/Build/Products/Debug-iphoneos\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -266,17 +251,12 @@
 		586BBA9415470A2A00332DED /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../ASPEngine/Products\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Game1/Game1-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../ASPEngine/Products/ASPEngine.framework/Headers/\"";
 				INFOPLIST_FILE = "Game1/Game1-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../DerivedData/FatCat/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../DerivedData/First Game/Build/Products/Debug-iphoneos\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
