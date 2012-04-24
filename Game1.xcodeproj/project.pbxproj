@@ -22,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		55186C1F15471F950046CCE1 /* ASPEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASPEngine.h; path = ../ASPEngine/ASPEngine/ASPEngine.h; sourceTree = "<group>"; };
+		580BF6A915471BE900EC8748 /* libASPEngine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libASPEngine.a; path = "/Users/aspcartman/Documents/xCode Projects/FatCat-Studio/Demo/../DerivedData/First Game/Build/Products/Debug-iphoneos/libASPEngine.a"; sourceTree = "<absolute>"; };
 		580BF6AC15471C9100EC8748 /* FCGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCGameViewController.h; sourceTree = "<group>"; };
 		580BF6AD15471C9200EC8748 /* FCGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCGameViewController.m; sourceTree = "<group>"; };
 		586BBA7A15470A2A00332DED /* Game1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game1.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +93,8 @@
 				58EDA262154741C100595BC8 /* QuartzCore.framework */,
 				58EDA260154741BC00595BC8 /* OpenGLES.framework */,
 				58EDA25E154741B700595BC8 /* GLKit.framework */,
+				55186C1F15471F950046CCE1 /* ASPEngine.h */,
+				580BF6A915471BE900EC8748 /* libASPEngine.a */,
 				586BBA7E15470A2A00332DED /* UIKit.framework */,
 				586BBA8015470A2A00332DED /* Foundation.framework */,
 				586BBA8215470A2A00332DED /* CoreGraphics.framework */,
