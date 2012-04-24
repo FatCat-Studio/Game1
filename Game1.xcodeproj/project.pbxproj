@@ -7,15 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		580BF6AB15471C5800EC8748 /* libASPEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 580BF6A915471BE900EC8748 /* libASPEngine.a */; };
+		580BF6AE15471C9200EC8748 /* FCGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 580BF6AD15471C9200EC8748 /* FCGameViewController.m */; };
 		586BBA7F15470A2A00332DED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 586BBA7E15470A2A00332DED /* UIKit.framework */; };
 		586BBA8115470A2A00332DED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 586BBA8015470A2A00332DED /* Foundation.framework */; };
 		586BBA8315470A2A00332DED /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 586BBA8215470A2A00332DED /* CoreGraphics.framework */; };
 		586BBA8915470A2A00332DED /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 586BBA8715470A2A00332DED /* InfoPlist.strings */; };
 		586BBA8B15470A2A00332DED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 586BBA8A15470A2A00332DED /* main.m */; };
 		586BBA8F15470A2A00332DED /* FCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 586BBA8E15470A2A00332DED /* FCAppDelegate.m */; };
+		58B17C47154719BA00EEBF36 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58B17C46154719BA00EEBF36 /* Storyboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		580BF6A915471BE900EC8748 /* libASPEngine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libASPEngine.a; path = "/Users/aspcartman/Documents/xCode Projects/FatCat-Studio/Demo/../DerivedData/First Game/Build/Products/Debug-iphoneos/libASPEngine.a"; sourceTree = "<absolute>"; };
+		580BF6AC15471C9100EC8748 /* FCGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCGameViewController.h; sourceTree = "<group>"; };
+		580BF6AD15471C9200EC8748 /* FCGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCGameViewController.m; sourceTree = "<group>"; };
 		586BBA7A15470A2A00332DED /* Game1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		586BBA7E15470A2A00332DED /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		586BBA8015470A2A00332DED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -26,6 +32,8 @@
 		586BBA8C15470A2A00332DED /* Game1-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Game1-Prefix.pch"; sourceTree = "<group>"; };
 		586BBA8D15470A2A00332DED /* FCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCAppDelegate.h; sourceTree = "<group>"; };
 		586BBA8E15470A2A00332DED /* FCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCAppDelegate.m; sourceTree = "<group>"; };
+		58B17C46154719BA00EEBF36 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		58B17C4C15471AC800EEBF36 /* ASPEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASPEngine.h; path = "/Users/aspcartman/Documents/xCode Projects/FatCat-Studio/Demo/../ASPEngine/ASPEngine/ASPEngine.h"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +44,7 @@
 				586BBA7F15470A2A00332DED /* UIKit.framework in Frameworks */,
 				586BBA8115470A2A00332DED /* Foundation.framework in Frameworks */,
 				586BBA8315470A2A00332DED /* CoreGraphics.framework in Frameworks */,
+				580BF6AB15471C5800EC8748 /* libASPEngine.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +71,8 @@
 		586BBA7D15470A2A00332DED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				58B17C4C15471AC800EEBF36 /* ASPEngine.h */,
+				580BF6A915471BE900EC8748 /* libASPEngine.a */,
 				586BBA7E15470A2A00332DED /* UIKit.framework */,
 				586BBA8015470A2A00332DED /* Foundation.framework */,
 				586BBA8215470A2A00332DED /* CoreGraphics.framework */,
@@ -74,6 +85,9 @@
 			children = (
 				586BBA8D15470A2A00332DED /* FCAppDelegate.h */,
 				586BBA8E15470A2A00332DED /* FCAppDelegate.m */,
+				58B17C46154719BA00EEBF36 /* Storyboard.storyboard */,
+				580BF6AC15471C9100EC8748 /* FCGameViewController.h */,
+				580BF6AD15471C9200EC8748 /* FCGameViewController.m */,
 				586BBA8515470A2A00332DED /* Supporting Files */,
 			);
 			path = Game1;
@@ -143,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				586BBA8915470A2A00332DED /* InfoPlist.strings in Resources */,
+				58B17C47154719BA00EEBF36 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +170,7 @@
 			files = (
 				586BBA8B15470A2A00332DED /* main.m in Sources */,
 				586BBA8F15470A2A00332DED /* FCAppDelegate.m in Sources */,
+				580BF6AE15471C9200EC8748 /* FCGameViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,6 +239,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Game1/Game1-Prefix.pch";
 				INFOPLIST_FILE = "Game1/Game1-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../DerivedData/First Game/Build/Products/Debug-iphoneos\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -234,6 +254,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Game1/Game1-Prefix.pch";
 				INFOPLIST_FILE = "Game1/Game1-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../DerivedData/First Game/Build/Products/Debug-iphoneos\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -258,6 +282,7 @@
 				586BBA9415470A2A00332DED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
