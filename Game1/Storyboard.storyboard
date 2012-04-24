@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<<<<<<< HEAD
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="CN7-yR-JHL">
-=======
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="ohg-CW-Pyg">
->>>>>>> Add some more Phisics
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zUV-tw-zRX">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
@@ -11,36 +7,20 @@
     </dependencies>
     <scenes>
         <!--GLKit View Controller-->
-<<<<<<< HEAD
-        <scene sceneID="fI2-WJ-9oB">
+        <scene sceneID="KVS-Fq-ViW">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RBV-Jn-Bno" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <glkViewController autoresizesArchivedViewToFullSize="NO" preferredFramesPerSecond="30" id="CN7-yR-JHL" customClass="FCGameViewController" sceneMemberID="viewController">
-                    <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="OzM-Nu-LWQ">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l5q-fq-i7O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <glkViewController autoresizesArchivedViewToFullSize="NO" preferredFramesPerSecond="30" id="zUV-tw-zRX" customClass="FCGameViewController" sceneMemberID="viewController">
+                    <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="2cW-qm-yh7">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <connections>
-                            <outlet property="delegate" destination="CN7-yR-JHL" id="Uve-MF-Muh"/>
-=======
-        <scene sceneID="aMl-Gc-kVV">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gxb-92-7h3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <glkViewController autoresizesArchivedViewToFullSize="NO" preferredFramesPerSecond="30" id="ohg-CW-Pyg" customClass="FCGameViewController" sceneMemberID="viewController">
-                    <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Rsd-20-idN">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <connections>
-                            <outlet property="delegate" destination="ohg-CW-Pyg" id="rV3-xv-eaR"/>
->>>>>>> Add some more Phisics
+                            <outlet property="delegate" destination="zUV-tw-zRX" id="u1D-3r-JK6"/>
                         </connections>
                     </glkView>
                 </glkViewController>
             </objects>
-<<<<<<< HEAD
-            <point key="canvasLocation" x="176" y="225"/>
-=======
-            <point key="canvasLocation" x="81" y="22"/>
->>>>>>> Add some more Phisics
+            <point key="canvasLocation" x="464" y="79"/>
         </scene>
     </scenes>
     <classes>

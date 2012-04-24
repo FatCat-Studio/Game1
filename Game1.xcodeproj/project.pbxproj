@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		555E8E381547672E00418242 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 555E8E371547672E00418242 /* Storyboard.storyboard */; };
+		555E8E3B15476A3E00418242 /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 555E8E3A15476A3E00418242 /* ball.png */; };
 		580BF6AE15471C9200EC8748 /* FCGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 580BF6AD15471C9200EC8748 /* FCGameViewController.m */; };
 		586BBA7F15470A2A00332DED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 586BBA7E15470A2A00332DED /* UIKit.framework */; };
 		586BBA8115470A2A00332DED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 586BBA8015470A2A00332DED /* Foundation.framework */; };
@@ -14,7 +16,6 @@
 		586BBA8915470A2A00332DED /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 586BBA8715470A2A00332DED /* InfoPlist.strings */; };
 		586BBA8B15470A2A00332DED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 586BBA8A15470A2A00332DED /* main.m */; };
 		586BBA8F15470A2A00332DED /* FCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 586BBA8E15470A2A00332DED /* FCAppDelegate.m */; };
-		58B17C47154719BA00EEBF36 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58B17C46154719BA00EEBF36 /* Storyboard.storyboard */; };
 		58EDA25B1547418B00595BC8 /* libASPEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EDA25A1547418B00595BC8 /* libASPEngine.a */; };
 		58EDA264154741CF00595BC8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EDA262154741C100595BC8 /* QuartzCore.framework */; };
 		58EDA265154741CF00595BC8 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EDA260154741BC00595BC8 /* OpenGLES.framework */; };
@@ -23,6 +24,8 @@
 
 /* Begin PBXFileReference section */
 		55186C1F15471F950046CCE1 /* ASPEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASPEngine.h; path = ../ASPEngine/ASPEngine/ASPEngine.h; sourceTree = "<group>"; };
+		555E8E371547672E00418242 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		555E8E3A15476A3E00418242 /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
 		580BF6A915471BE900EC8748 /* libASPEngine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libASPEngine.a; path = "/Users/aspcartman/Documents/xCode Projects/FatCat-Studio/Demo/../DerivedData/First Game/Build/Products/Debug-iphoneos/libASPEngine.a"; sourceTree = "<absolute>"; };
 		580BF6AC15471C9100EC8748 /* FCGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCGameViewController.h; sourceTree = "<group>"; };
 		580BF6AD15471C9200EC8748 /* FCGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCGameViewController.m; sourceTree = "<group>"; };
@@ -36,7 +39,6 @@
 		586BBA8C15470A2A00332DED /* Game1-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Game1-Prefix.pch"; sourceTree = "<group>"; };
 		586BBA8D15470A2A00332DED /* FCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FCAppDelegate.h; sourceTree = "<group>"; };
 		586BBA8E15470A2A00332DED /* FCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FCAppDelegate.m; sourceTree = "<group>"; };
-		58B17C46154719BA00EEBF36 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		58EDA2561547413100595BC8 /* ASPEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASPEngine.h; path = ../ASPEngine/ASPEngine/ASPEngine.h; sourceTree = "<group>"; };
 		58EDA2571547413100595BC8 /* ASPGLKVector2Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASPGLKVector2Extension.h; path = ../ASPEngine/ASPEngine/ASPGLKVector2Extension.h; sourceTree = "<group>"; };
 		58EDA2581547413100595BC8 /* ASPGLKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASPGLKViewController.h; path = ../ASPEngine/ASPEngine/ASPGLKViewController.h; sourceTree = "<group>"; };
@@ -65,6 +67,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		555E8E3915476A2D00418242 /* Pics */ = {
+			isa = PBXGroup;
+			children = (
+				555E8E3A15476A3E00418242 /* ball.png */,
+			);
+			name = Pics;
+			sourceTree = "<group>";
+		};
 		586BBA6F15470A2A00332DED = {
 			isa = PBXGroup;
 			children = (
@@ -106,8 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				586BBA8D15470A2A00332DED /* FCAppDelegate.h */,
+				555E8E371547672E00418242 /* Storyboard.storyboard */,
 				586BBA8E15470A2A00332DED /* FCAppDelegate.m */,
-				58B17C46154719BA00EEBF36 /* Storyboard.storyboard */,
 				580BF6AC15471C9100EC8748 /* FCGameViewController.h */,
 				580BF6AD15471C9200EC8748 /* FCGameViewController.m */,
 				586BBA8515470A2A00332DED /* Supporting Files */,
@@ -118,6 +128,7 @@
 		586BBA8515470A2A00332DED /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				555E8E3915476A2D00418242 /* Pics */,
 				586BBA8615470A2A00332DED /* Game1-Info.plist */,
 				586BBA8715470A2A00332DED /* InfoPlist.strings */,
 				586BBA8A15470A2A00332DED /* main.m */,
@@ -179,7 +190,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				586BBA8915470A2A00332DED /* InfoPlist.strings in Resources */,
-				58B17C47154719BA00EEBF36 /* Storyboard.storyboard in Resources */,
+				555E8E381547672E00418242 /* Storyboard.storyboard in Resources */,
+				555E8E3B15476A3E00418242 /* ball.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,10 +273,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Game1/Game1-Prefix.pch";
 				INFOPLIST_FILE = "Game1/Game1-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../DerivedData/FatCat/Build/Products/Debug-iphoneos\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -276,10 +285,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Game1/Game1-Prefix.pch";
 				INFOPLIST_FILE = "Game1/Game1-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../DerivedData/FatCat/Build/Products/Debug-iphoneos\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
