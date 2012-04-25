@@ -20,17 +20,9 @@
                     </glkView>
                 </glkViewController>
             </objects>
-            <point key="canvasLocation" x="464" y="79"/>
+            <point key="canvasLocation" x="337" y="76"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="ASPGLKViewController" superclassName="GLKViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ASPGLKViewController.h"/>
-        </class>
-        <class className="FCGameViewController" superclassName="ASPGLKViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FCGameViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

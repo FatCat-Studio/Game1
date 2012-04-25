@@ -7,6 +7,7 @@
 //
 
 #import "ASPEngine.h"
+#import <GLKit/GLKit.h>
 @interface FCGameViewController : ASPGLKViewController
 
 @end

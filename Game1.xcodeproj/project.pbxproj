@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		555E8E381547672E00418242 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 555E8E371547672E00418242 /* Storyboard.storyboard */; };
 		555E8E3B15476A3E00418242 /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 555E8E3A15476A3E00418242 /* ball.png */; };
+		55F6DAC7154770BF00A0773B /* newball.png in Resources */ = {isa = PBXBuildFile; fileRef = 55F6DAC6154770BF00A0773B /* newball.png */; };
+		55F6DACA154773F100A0773B /* newball2.png in Resources */ = {isa = PBXBuildFile; fileRef = 55F6DAC9154773F100A0773B /* newball2.png */; };
 		580BF6AE15471C9200EC8748 /* FCGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 580BF6AD15471C9200EC8748 /* FCGameViewController.m */; };
 		586BBA7F15470A2A00332DED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 586BBA7E15470A2A00332DED /* UIKit.framework */; };
 		586BBA8115470A2A00332DED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 586BBA8015470A2A00332DED /* Foundation.framework */; };
@@ -26,6 +28,8 @@
 		55186C1F15471F950046CCE1 /* ASPEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASPEngine.h; path = ../ASPEngine/ASPEngine/ASPEngine.h; sourceTree = "<group>"; };
 		555E8E371547672E00418242 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		555E8E3A15476A3E00418242 /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
+		55F6DAC6154770BF00A0773B /* newball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newball.png; sourceTree = "<group>"; };
+		55F6DAC9154773F100A0773B /* newball2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newball2.png; sourceTree = "<group>"; };
 		580BF6A915471BE900EC8748 /* libASPEngine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libASPEngine.a; path = "/Users/aspcartman/Documents/xCode Projects/FatCat-Studio/Demo/../DerivedData/First Game/Build/Products/Debug-iphoneos/libASPEngine.a"; sourceTree = "<absolute>"; };
 		580BF6AC15471C9100EC8748 /* FCGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCGameViewController.h; sourceTree = "<group>"; };
 		580BF6AD15471C9200EC8748 /* FCGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCGameViewController.m; sourceTree = "<group>"; };
@@ -70,6 +74,8 @@
 		555E8E3915476A2D00418242 /* Pics */ = {
 			isa = PBXGroup;
 			children = (
+				55F6DAC9154773F100A0773B /* newball2.png */,
+				55F6DAC6154770BF00A0773B /* newball.png */,
 				555E8E3A15476A3E00418242 /* ball.png */,
 			);
 			name = Pics;
@@ -192,6 +198,8 @@
 				586BBA8915470A2A00332DED /* InfoPlist.strings in Resources */,
 				555E8E381547672E00418242 /* Storyboard.storyboard in Resources */,
 				555E8E3B15476A3E00418242 /* ball.png in Resources */,
+				55F6DAC7154770BF00A0773B /* newball.png in Resources */,
+				55F6DACA154773F100A0773B /* newball2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
