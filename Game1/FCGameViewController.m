@@ -64,7 +64,7 @@
             CGFloat acceleration = 7;// Модуль силы
             GLfloat width = sp.contentSize.width; // Ширина спрайта
             GLfloat height = sp.contentSize.height; // Высота спрайта
-            if(distance < 140){
+            if(distance < 75){
                 sp.contentSize = CGSizeMake(width-1, height-1);
                 acceleration = 10;
             }else {
@@ -76,7 +76,6 @@
                 [sp outOfView];
             }
         }else{
-            
             sp.contentSize = CGSizeMake(20, 20); // Если отпустили и шар есть, то возвращаем размер
             sp.velocity = GLKVector2Make(X*sin(a*t[i]+w), Y*sin(b*t[i]));
             t[i]+=0.006;
