@@ -8,79 +8,82 @@
 
 #import "FCGameViewController.h"
 
-#define NUM 30
+#define BOYS 50
 #define GIRLS 5
 @implementation FCGameViewController{
     ASPGLSprite *first;
     ASPGLSprite *second;
-    float t[NUM];
-    NSString *sex[NUM+GIRLS];
-    float b;
+    float t[BOYS+GIRLS];
     float w;
     GLKVector2 touchPos;
 	BOOL touching;
+    ASPGLSprite* blackHole;
 }
 -(void) viewDidLoad{
     [super viewDidLoad];
+    blackHole =[ASPGLSprite spriteWithTextureName:@"player.png" effect:self.effect]; //наша черная дыра под пальцем
+	blackHole.hidden = YES;
+    blackHole.contentSize = CGSizeMake(150,150);
     w = 0;
-    int i=0;
-    for (; i<NUM; ++i){
-        ASPGLSprite *lol = [ASPGLSprite spriteWithTextureName:@"newball2.png" effect: self.effect];
-        lol.contentSize = CGSizeMake(20,20);
-        lol.position = GLKVector2Make(self.viewIOSize.width/2 + rand()%300 - 150, self.viewIOSize.height/2+rand()%300-150);
-        t[i]=(i*3.14)/NUM;
-        sex[i] = @"boy";
-        [self.sprites addObject:lol];
+    for (int i=0; i<BOYS+GIRLS; ++i){
+        ASPGLSprite *sp;
+        if(i<=BOYS){ // Если парень
+            sp = [ASPGLSprite spriteWithTextureName:@"newball.png" effect: self.effect]; //Задаем текстуру
+            sp.fileName = @"boy"; // Задаем пол
+        } else { // Парни кончились, пошли девушки
+            sp = [ASPGLSprite spriteWithTextureName:@"newball2.png" effect: self.effect]; //Задаем текстуру
+            sp.fileName = @"girl";// Задаем пол
+        }
+        sp.contentSize = CGSizeMake(20,20); // Задаем размеры
+        sp.position = GLKVector2Make(self.viewIOSize.width/2 + rand()%200 - 100, self.viewIOSize.height/2+rand()%300-150); // Задаем позиции
+        t[i]=(i*3.14)/(BOYS+GIRLS); // Задаем время отступа от нуля, чтобы они летали в разных фазах
+        [self.sprites addObject:sp]; // Запихиваем в массив
     }
-    for (; i<NUM+GIRLS; ++i){
-        ASPGLSprite *lol = [ASPGLSprite spriteWithTextureName:@"newball.png" effect: self.effect];
-        lol.contentSize = CGSizeMake(20,20);
-        lol.position = GLKVector2Make(self.viewIOSize.width/2 + rand()%200 - 100, self.viewIOSize.height/2+rand()%300-150);
-        t[i]=(i*3.14)/GIRLS;
-        sex[i] = @"girl";
-        [self.sprites addObject:lol];
-    }
+       [self.sprites addObject:blackHole]; // Запихиваем в массив
 }
 
-#define A 170
-#define B 170
+// Максимальная скорость по X:
+#define X 170
+// Максимальная скорость по Y:
+#define Y 170
+// Количество раз пересечет экран по X прямой:
 #define a 5
+// Количество раз пересечет экран по Y прямой:
+#define b 4
 -(void)update{
-    b = 4;
-    w+=0.01;
-
-    for (int i = 0;i<NUM+GIRLS;++i){
+    for (int i = 0;i<BOYS+GIRLS;++i){
+        ASPGLSprite* sp = [self.sprites objectAtIndex:i];
         //Палец
         if(touching){
-            // Здесь мы рассчитываем новую скорость шарика под действием силы тяжести
-            GLKVector2 vect = GLKVector2Subtract(touchPos,
-                    ((ASPGLSprite*)[self.sprites objectAtIndex:i]).centerPosition); // вектор, соединяющий середину шарика и палец
-            float length = GLKVector2Length(vect); // расстояние до пальца
-            vect=GLKVector2Normalize(vect); // Привели к единичной длине
-            CGFloat acceleration = 5;// Модуль силы
-            GLfloat width = ((ASPGLSprite*)[self.sprites objectAtIndex:i]).contentSize.width;
-            GLfloat height = ((ASPGLSprite*)[self.sprites objectAtIndex:i]).contentSize.height;
-            if(length<70){
-                ((ASPGLSprite*)[self.sprites objectAtIndex:i]).contentSize = CGSizeMake(width-1, height-1);                acceleration = 9;
+            blackHole.position = GLKVector2Make(touchPos.x, touchPos.y-blackHole.contentSize.height/2);
+            blackHole.hidden=NO;
+            // Рассчитываем новую скорость шарика под действием силы притяжения Черной дыры
+            GLKVector2 vect = GLKVector2Subtract(touchPos, sp.centerPosition); // Вектор от черной дыры к шарику
+            float distance = GLKVector2Length(vect); // Расстояние до черной дыры от шарика
+            vect = GLKVector2Normalize(vect); // Привели к единичной длине
+            CGFloat acceleration = 7;// Модуль силы
+            GLfloat width = sp.contentSize.width; // Ширина спрайта
+            GLfloat height = sp.contentSize.height; // Высота спрайта
+            if(distance < 140){
+                sp.contentSize = CGSizeMake(width-1, height-1);
+                acceleration = 10;
             }else {
-                ((ASPGLSprite*)[self.sprites objectAtIndex:i]).contentSize = CGSizeMake(20, 20); //Если вылетели из круга и шар есть, то возвращаем размер
+                sp.contentSize = CGSizeMake(20, 20); //Если вылетели из круга и шар есть, то возвращаем размер
             }
-            vect=GLKVector2MultiplyScalar(vect, acceleration); // Задали направление ускорения
-            ((ASPGLSprite*)[self.sprites objectAtIndex:i]).velocity =
-            GLKVector2Add(((ASPGLSprite*)[self.sprites objectAtIndex:i]).velocity, vect); // Наша новая скорость
-            if(width+height<1){
-                [[self.sprites objectAtIndex:i] outOfView];
+            vect = GLKVector2MultiplyScalar(vect, acceleration); // Задали направление ускорения
+            sp.velocity = GLKVector2Add(sp.velocity, vect); // Новая скорость шарика
+            if(width+height<3){ //Если исчезли, то очистить память
+                [sp outOfView];
             }
-            [[self.sprites objectAtIndex:i] update:self.timeSinceLastUpdate];
         }else{
-            ((ASPGLSprite*)[self.sprites objectAtIndex:i]).contentSize = CGSizeMake(20, 20); // Если отпустили и шар есть, то возвращаем размер
-            ((ASPGLSprite*)[self.sprites objectAtIndex:i]).velocity = GLKVector2Make(A*sin(a*t[i]+w), B*sin(b*t[i]));
-            [[self.sprites objectAtIndex:i] update:self.timeSinceLastUpdate];
+            
+            sp.contentSize = CGSizeMake(20, 20); // Если отпустили и шар есть, то возвращаем размер
+            sp.velocity = GLKVector2Make(X*sin(a*t[i]+w), Y*sin(b*t[i]));
             t[i]+=0.006;
         }
+        [sp update:self.timeSinceLastUpdate];
     }
-    //b-=0.001;
-    //if(b<=0) b=1;
+    [blackHole update:self.timeSinceLastUpdate];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -88,8 +91,10 @@
 	CGPoint point=[[touches anyObject] locationInView:self.view];
 	touchPos=GLKVector2Make(point.x, self.viewIOSize.height-point.y);
 }
+
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
 	touching=NO;
+    blackHole.hidden = YES;
 }
 
 @end
