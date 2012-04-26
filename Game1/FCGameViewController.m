@@ -8,8 +8,8 @@
 
 #import "FCGameViewController.h"
 
-#define BOYS 40
-#define GIRLS 5
+#define BOYS 60
+#define GIRLS 15
 @implementation FCGameViewController{
     ASPGLSprite *first;
     ASPGLSprite *second;
@@ -18,10 +18,13 @@
     GLKVector2 touchPos;
 	BOOL touching;
     ASPGLSprite* blackHole;
-    int points;
+    int boysNumber;
+    int girlsNumber;
 }
 -(void) viewDidLoad{
     [super viewDidLoad];
+    boysNumber = 0;
+    girlsNumber = 0;
     blackHole =[ASPGLSprite spriteWithTextureName:@"player.png" effect:self.effect]; //наша черная дыра под пальцем
 	blackHole.hidden = YES;
     blackHole.contentSize = CGSizeMake(150,150);
@@ -66,17 +69,21 @@
             CGFloat acceleration = 5;// Модуль силы
             GLfloat width = sp.contentSize.width; // Ширина спрайта
             GLfloat height = sp.contentSize.height; // Высота спрайта
-            if(distance < 75){
+            if(distance < 70){
                 sp.contentSize = CGSizeMake(width-1, height-1);
-                acceleration = 7;
+                acceleration = 20;
             }else {
                 sp.contentSize = CGSizeMake(20, 20); //Если вылетели из круга и шар есть, то возвращаем размер
             }
             vect = GLKVector2MultiplyScalar(vect, acceleration); // Задали направление ускорения
-            sp.velocity = GLKVector2Add(sp.velocity, vect); // Новая скорость шарика
+            sp.velocity = GLKVector2MultiplyScalar(vect, 20); // Новая скорость шарика
             if(width+height<3){ //Если исчезли, то очистить память
+                if([sp.fileName compare:@"boy"]==0){
+                    [boysField setText:[NSString stringWithFormat:@"%d", boysNumber++]];
+                } else {
+                    [girlsField setText:[NSString stringWithFormat:@"%d", girlsNumber++]];
+                }
                 [sp outOfView];
-                points++;
             }
         }else{
             sp.contentSize = CGSizeMake(20, 20); // Если отпустили и шар есть, то возвращаем размер
