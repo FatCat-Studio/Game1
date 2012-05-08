@@ -80,6 +80,7 @@ static NSCache *__ASPGLTextureCache;
 							  nil];
 	NSError *error;    
 	NSString *path = [[NSBundle mainBundle] pathForResource:fileName ofType:nil];
+	if (!path) return nil;
 	GLKTextureInfo *texture=[GLKTextureLoader textureWithContentsOfFile:path options:options error:&error];
 	if (texture==nil){
 		NSLog(@"Failed to load texture: %@",[error localizedDescription]);
