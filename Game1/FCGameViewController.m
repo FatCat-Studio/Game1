@@ -21,6 +21,16 @@
     int boysNumber;
     int girlsNumber;
 }
+#pragma mark - Loading -
+-(void) positionPauseView{
+	CGRect bounds=pauseView.bounds;
+	if (bounds.origin.y==0){
+//		Т.к. координаты у iOS через жопу, надо переставить вид под экран
+		bounds.origin.y=-self.viewIOSize.height-bounds.size.height;
+	}
+	bounds.origin.x=0;
+	pauseView.bounds=bounds;
+}
 -(void) viewDidLoad{
     [super viewDidLoad];
     blackHole =[ASPGLSprite spriteWithTextureName:@"player.png" effect:self.effect]; //наша черная дыра под пальцем
@@ -42,8 +52,22 @@
         [self.sprites addObject:sp]; // Запихиваем в массив
     }
 	[self.sprites addObject:blackHole]; // Запихиваем в массив
+	
+//	Ловим даблтапы для вызова паузы
+	UITapGestureRecognizer *doubleTap = 
+	[[UITapGestureRecognizer alloc]
+	 initWithTarget:self 
+	 action:@selector(showPauseView)];
+    doubleTap.numberOfTapsRequired = 2;
+    [self.view addGestureRecognizer:doubleTap];
+//	Добавляем pauseView в вид игры, чтобы он отрисовывался
+	if (pauseView){
+		[self positionPauseView];
+		[self.view addSubview:pauseView];
+	}
 }
 
+#pragma mark - Logic -
 // Максимальная скорость по X:
 #define X 170
 // Максимальная скорость по Y:
@@ -80,7 +104,10 @@
 		[sp outOfView];
 	}
 }
-
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+	[super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+	[self positionPauseView];
+}
 -(void)update{
     for (int i = 0; i <= BOYS+GIRLS; ++i){
         ASPGLSprite* sp = [self.sprites objectAtIndex:i];
@@ -99,6 +126,8 @@
 	[blackHole update:self.timeSinceLastUpdate];
 }
 
+#pragma mark - Touches -
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
 	touching=YES;
 	CGPoint point=[[touches anyObject] locationInView:self.view];
@@ -108,6 +137,33 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
 	touching=NO;
     blackHole.hidden = YES;
+}
+
+#pragma mark - Pause -
+
+- (void) showPauseView{
+	[UIView animateWithDuration:0.5 animations:^{
+		pauseView.bounds=CGRectOffset(pauseView.bounds, 0, pauseView.bounds.size.height);
+	} completion:^(BOOL finished){
+		[pauseView becomeFirstResponder];
+	}];
+	//[UIView commitAnimations];
+}
+
+- (IBAction)hidePauseView{
+	[UIView animateWithDuration:0.5 animations:^{
+		pauseView.bounds=CGRectOffset(pauseView.bounds, 0, -pauseView.bounds.size.height);
+	} completion:^(BOOL finished){
+		[pauseView resignFirstResponder];
+	}];
+}
+
+- (IBAction)cancel:(id)sender{
+	
+}
+
+- (IBAction)menu:(id)sender{
+	
 }
 
 @end

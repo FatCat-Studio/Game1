@@ -12,5 +12,6 @@
 {
     IBOutlet UILabel *boysField;
     IBOutlet UILabel *girlsField;
+	IBOutlet UIView *pauseView;
 }
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zUV-tw-zRX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zUV-tw-zRX">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
@@ -10,9 +10,9 @@
         <scene sceneID="KVS-Fq-ViW">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l5q-fq-i7O" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <glkViewController autoresizesArchivedViewToFullSize="NO" preferredFramesPerSecond="30" id="zUV-tw-zRX" customClass="FCGameViewController" sceneMemberID="viewController">
+                <glkViewController autoresizesArchivedViewToFullSize="NO" title="Game" wantsFullScreenLayout="YES" preferredFramesPerSecond="60" id="zUV-tw-zRX" customClass="FCGameViewController" sceneMemberID="viewController">
                     <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" id="2cW-qm-yh7">
-                        <rect key="frame" x="0.0" y="20" width="480" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="2nu-Be-nxQ">
@@ -32,14 +32,132 @@
                         </subviews>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </glkView>
+                    <navigationItem key="navigationItem" id="N6B-lS-Wsz"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="boysField" destination="2nu-Be-nxQ" id="876-OH-JbO"/>
                         <outlet property="girlsField" destination="5yZ-62-d1u" id="BCO-uM-hgK"/>
+                        <outlet property="pauseView" destination="yp6-YB-C3i" id="sLz-Pf-H3v"/>
                     </connections>
                 </glkViewController>
+                <view opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="yp6-YB-C3i" userLabel="PauseVIew">
+                    <rect key="frame" x="0.0" y="0.0" width="176" height="135"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YyH-Jz-NtU">
+                            <rect key="frame" x="20" y="20" width="136" height="37"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="Back to Menu">
+                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="P3p-Kk-ups">
+                            <rect key="frame" x="51" y="78" width="74" height="37"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="hidePauseView" destination="zUV-tw-zRX" eventType="touchUpInside" id="dKd-7p-EgS"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
             </objects>
-            <point key="canvasLocation" x="337" y="76"/>
+            <point key="canvasLocation" x="1017" y="120"/>
+        </scene>
+        <!--View Controller - Main Menu-->
+        <scene sceneID="FNc-1m-6bb">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c75-rR-Kji" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController title="Main Menu" id="gTS-xV-Z1f" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vzh-Bl-Vcy">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ygu-Sx-A7x">
+                                <rect key="frame" x="95" y="114" width="111" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Level Select">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="PcX-tg-a6g" kind="push" id="DTa-hv-cDW"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6lX-To-2BS"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-209" y="76"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="aPG-RH-joK">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TNL-Kq-aFN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController wantsFullScreenLayout="YES" definesPresentationContext="YES" navigationBarHidden="YES" id="aWy-RE-vJF" sceneMemberID="viewController">
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="zag-9g-lNN">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="gTS-xV-Z1f" kind="relationship" relationship="rootViewController" id="i07-9V-90g"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-845" y="81"/>
+        </scene>
+        <!--View Controller - Level Select-->
+        <scene sceneID="VH7-Et-2j7">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Atc-lQ-gxD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController title="Level Select" id="PcX-tg-a6g" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BtN-s9-mVm">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cz2-Yx-I1R">
+                                <rect key="frame" x="204" y="131" width="72" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="1">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="zUV-tw-zRX" kind="push" id="zrb-9Q-PTP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="anq-cH-VGk"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="421" y="-269"/>
         </scene>
     </scenes>
     <classes>
@@ -51,12 +169,13 @@
             <relationships>
                 <relationship kind="outlet" name="boysField" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="girlsField" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pauseView" candidateClass="UIView"/>
             </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
+        <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
 </document>

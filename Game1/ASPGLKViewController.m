@@ -13,6 +13,7 @@
 @end
 @implementation ASPGLKViewController
 @synthesize context=_context,effect=_effect,sprites=_sprites,viewIOSize,backgroundColor=_backgroundColor;
+
 -(CGSize)viewIOSize{
 	return self.view.bounds.size; //А ларчик просто открывался, бля.
 }
@@ -56,8 +57,8 @@
 }
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
+//	[super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 	self.effect.transform.projectionMatrix=GLKMatrix4MakeOrtho(0,self.viewIOSize.width, 0, self.viewIOSize.height, -1024, 1024);
-	
 }
 #pragma mark Drawing
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect{
