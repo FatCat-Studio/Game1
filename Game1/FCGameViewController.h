@@ -9,8 +9,5 @@
 #import "ASPEngine.h"
 #import <GLKit/GLKit.h>
 @interface FCGameViewController : ASPGLKViewController
-{
-    IBOutlet UILabel *boysField;
-    IBOutlet UILabel *girlsField;
-}
+-(GLKVector2)TKRotateVectorByAngle:(GLKVector2)vect withAngle:(double)angle;
 @end
