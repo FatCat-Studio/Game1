@@ -47,7 +47,7 @@ typedef struct {
 @synthesize fileName=_fileName;
 @synthesize hidden=_hidden;
 @synthesize rotation=_rotation;
-@synthesize name;
+@synthesize properties=_properties;
 
 static NSMutableSet *__ASPGLFreeSprites;
 static NSCache *__ASPGLTextureCache;
@@ -103,21 +103,30 @@ static NSCache *__ASPGLTextureCache;
 #pragma mark - Init
 - (id)initWithFile:(NSString *)fileName effect:(GLKBaseEffect *)effect position:(GLKVector2)position bounds:(CGSize)size respectAspectRatio:(BOOL)respectAR{
     if ((self = [super init])) { 
+		//Дополнительные параметры для всяких мелочей
+		self.properties=[NSMutableDictionary dictionaryWithCapacity:1];
+		[_properties setValue:@"NoName" forKey:@"Name"];
 		//Мелочь
 		self.fileName=fileName;
-		self.name=fileName;
 		//Привет шейдер
         self.effect = effect;
 		//Загружаем текстуру
 		self.textureInfo = [ASPGLSprite textureByFileName:fileName loadIfEmpty:YES];
 		CGSize textureSize=CGSizeMake(self.textureInfo.width, self.textureInfo.height);
+		//Хитрая весч с изменением размера
+		//Если размеры не нулевые
 		if (size.height&&size.width){
+			//То в зависимости от учета\неучета AspectRatio выставляем указанные размеры
 			if (respectAR){
+				//Назначаем размер текстуры текущим размером
 				_contentSize=textureSize;
+				//И дергаем сеттер, который уважает AR
 				self.contentSize=size;
 			}else
+				//Ну или в тупую выставляем размер
 				_contentSize=size;
 		}else {
+			//Если же нулевые размеры (т.е не указаны) то используем размер текстуры
 			_contentSize=textureSize;
 		}
 		TexturedQuad newQuad;
