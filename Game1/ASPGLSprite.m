@@ -28,11 +28,13 @@ typedef struct {
 //	Летающий лейбл рядом с обьектом, для дебага
 	UILabel *_debugLabel;
 	UIView *_debugView;
+	GLfloat aspect;
 }
 //GLKit stuff
 @property (strong) GLKBaseEffect * effect;
 @property (assign) TexturedQuad quad;
 @property (strong) GLKTextureInfo * textureInfo;
+
 + (void) addSpriteToFreeCache:(ASPGLSprite*)sp;
 @end
 
@@ -48,6 +50,7 @@ typedef struct {
 @synthesize hidden=_hidden;
 @synthesize rotation=_rotation;
 @synthesize properties=_properties;
+
 
 static NSMutableSet *__ASPGLFreeSprites;
 static NSCache *__ASPGLTextureCache;
@@ -114,17 +117,14 @@ static NSCache *__ASPGLTextureCache;
 		//Загружаем текстуру
 		self.textureInfo = [ASPGLSprite textureByFileName:fileName loadIfEmpty:YES];
 		CGSize textureSize=CGSizeMake(self.textureInfo.width, self.textureInfo.height);
+		aspect=textureSize.width/(GLfloat)textureSize.height;
 		//Хитрая весч с изменением размера
 		//Если размеры не нулевые
 		if (size.height&&size.width){
 			//То в зависимости от учета\неучета AspectRatio выставляем указанные размеры
 			if (respectAR){
-				//Назначаем размер текстуры текущим размером
-				_contentSize=textureSize;
-				//И дергаем сеттер, который уважает AR
 				self.contentSize=size;
 			}else
-				//Ну или в тупую выставляем размер
 				_contentSize=size;
 		}else {
 			//Если же нулевые размеры (т.е не указаны) то используем размер текстуры
@@ -176,7 +176,6 @@ respectAspectRatio:(BOOL)respectAR{
 #pragma Accessors
 - (void)setContentSize:(CGSize)contentSize{
 	//Предполагается, что в _contentSize лежит адекватный размер
-	CGFloat aspect = _contentSize.width/(CGFloat)_contentSize.height;
 	if (aspect>=1){
 		_contentSize.width=contentSize.width;
 		_contentSize.height=contentSize.width/aspect;
@@ -186,6 +185,10 @@ respectAspectRatio:(BOOL)respectAR{
 	}
 }
 
+- (GLfloat) aspect{
+	return _contentSize.width/(GLfloat)_contentSize.height;
+}
+
 - (void)outOfView{
 	_hidden=YES;
 	[ASPGLSprite addSpriteToFreeCache:self];
@@ -193,9 +196,11 @@ respectAspectRatio:(BOOL)respectAR{
 #pragma mark - OpenGL Part
 - (GLKMatrix4) modelMatrix {
     GLKMatrix4 modelMatrix = GLKMatrix4Identity;    
+	//Движение. Координаты - от пяток.
     modelMatrix = GLKMatrix4Translate(modelMatrix, self.position.x, self.position.y, 0);
-	modelMatrix = GLKMatrix4Translate(modelMatrix, -self.contentSize.width/2, 0, 0);
+	//Смена размера (аргументы - во сколько раз менять относительно размера оригинальной текстуры)
 	modelMatrix = GLKMatrix4Scale(modelMatrix, _contentSize.width/_textureInfo.width,_contentSize.height/_textureInfo.height, 0);
+	
     return modelMatrix;
 }
 
@@ -236,12 +241,44 @@ respectAspectRatio:(BOOL)respectAR{
 }
 @end
 
+#pragma mark - Categories -
+#import "ASPGLKVector2Extension.h"
 @implementation ASPGLSprite (Coordinates)
 @dynamic centerPosition;
 - (void) setCenterPosition:(GLKVector2)centerPosition{
-	self.position=GLKVector2Make(centerPosition.x,centerPosition.y-self.contentSize.height/2.);
+	self.position=GLKVector2Make(centerPosition.x-self.contentSize.width/2,centerPosition.y-self.contentSize.height/2.);
 }
 - (GLKVector2)centerPosition{
-	return GLKVector2Make(self.position.x, self.position.y+self.contentSize.height/2.);
+	return GLKVector2Make(self.position.x+self.contentSize.width/2, self.position.y+self.contentSize.height/2.);
+}
+@end
+
+
+@implementation ASPGLSprite (Sizes)
+@dynamic diagonal;
+
+- (void) setDiagonal:(GLfloat)diagonal{
+	GLKVector2 diagVector = GLKVector2Make(_contentSize.width, _contentSize.height);
+	diagVector = GLKVector2SetLength(diagVector, diagonal);
+	_contentSize.width=diagVector.x;
+	_contentSize.height=diagVector.y;
+}
+
+- (GLfloat) diagonal{
+	return sqrtf(_contentSize.width*_contentSize.height);
+}
+
+- (void) setRadious:(GLfloat)radious{
+	if (aspect<0){
+		_contentSize.width=radious;
+		_contentSize.height=_contentSize.width*aspect;
+	}else {
+		_contentSize.height=radious;
+		_contentSize.width=_contentSize.height/aspect;
+	}
+}
+
+- (GLfloat) radious{
+	return (_contentSize.width<_contentSize.height)?_contentSize.width:_contentSize.height;
 }
 @end

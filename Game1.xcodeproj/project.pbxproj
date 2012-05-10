@@ -19,7 +19,6 @@
 		556D8C831555DB0100834AE6 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 556D8C821555DB0100834AE6 /* circle.png */; };
 		5570B6871549620000F4C693 /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = 5570B6861549620000F4C693 /* player.png */; };
 		55F6DAC7154770BF00A0773B /* newball.png in Resources */ = {isa = PBXBuildFile; fileRef = 55F6DAC6154770BF00A0773B /* newball.png */; };
-		55F6DACA154773F100A0773B /* newball.png in Resources */ = {isa = PBXBuildFile; fileRef = 55F6DAC9154773F100A0773B /* newball.png */; };
 		580BF6AE15471C9200EC8748 /* FCGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 580BF6AD15471C9200EC8748 /* FCGameViewController.m */; };
 		586BBA7F15470A2A00332DED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 586BBA7E15470A2A00332DED /* UIKit.framework */; };
 		586BBA8115470A2A00332DED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 586BBA8015470A2A00332DED /* Foundation.framework */; };
@@ -232,7 +231,6 @@
 				555E8E381547672E00418242 /* Storyboard.storyboard in Resources */,
 				555E8E3B15476A3E00418242 /* ball.png in Resources */,
 				55F6DAC7154770BF00A0773B /* newball.png in Resources */,
-				55F6DACA154773F100A0773B /* newball.png in Resources */,
 				5570B6871549620000F4C693 /* player.png in Resources */,
 				556D8C831555DB0100834AE6 /* circle.png in Resources */,
 				550B51C415592F1600513BEA /* bonus.png in Resources */,

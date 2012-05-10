@@ -56,6 +56,10 @@ respectAspectRatio:(BOOL)respectAR;
 @property (nonatomic) GLKVector2 centerPosition;
 @end
 
+@interface ASPGLSprite (Sizes)
+@property (nonatomic) GLfloat diagonal;
+@property (nonatomic) GLfloat radious;
+@end
 //#pragma mark - Prototypes -
 //static __inline__ bool interceptRect(ASPGLSprite *sp1,ASPGLSprite *sp2){
 //}

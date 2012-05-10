@@ -20,7 +20,7 @@
     int caughtRed;
     int caughtGreen;
     int caughtBlue;
-    float timeSinceTouching; // Для того, чтобы сделать расширяющийся плавно круг, и чтобы он исчезал
+    float touchingTime; // Для того, чтобы сделать расширяющийся плавно круг, и чтобы он исчезал
 }
 
 -(GLKVector2)TKRotateVectorByAngle:(GLKVector2)vect withAngle:(double)angle{
@@ -77,9 +77,9 @@
                     if(sp.fileName == @"blue"){
                         caughtBlue++;
                     }
-        sp.contentSize = CGSizeMake(sp.contentSize.height-1, sp.contentSize.width-1);
-        vect = GLKVector2Normalize(vect); // Привели к единичной длине
-        sp.velocity = GLKVector2MultiplyScalar(vect, 30); // Теперь шарик движется красиво к центру круга и уменьшается.
+			sp.contentSize = CGSizeMake(sp.contentSize.height-1, sp.contentSize.width-1);
+			vect = GLKVector2Normalize(vect); // Привели к единичной длине
+			sp.velocity = GLKVector2MultiplyScalar(vect, 30); // Теперь шарик движется красиво к центру круга и уменьшается.
         }
         [sp update:self.timeSinceLastUpdate];
     }
@@ -88,31 +88,47 @@
 #define WALLFORCE 5
 -(void)update{
     if (touching){ // Если дотронулись, то рисуем круг, обновляем его положение размеры
-        circle.hidden = NO;
-        timeSinceTouching += self.timeSinceLastUpdate;
-        if (timeSinceTouching<0.4){
-            circle.contentSize = CGSizeMake(timeSinceTouching*440,timeSinceTouching*440);
-        }
-        circle.centerPosition = GLKVector2Make(touchPos.x, touchPos.y);
-    }
+        touchingTime += self.timeSinceLastUpdate;
+		if (circle.hidden){
+			circle.hidden = NO;
+			circle.centerPosition = touchPos;
+		}
+        if (circle.radious<100){
+            circle.radious = touchingTime*440;
+			circle.centerPosition = touchPos;
+			NSLog(@"%f",circle.radious);
+        }else {
+			GLKVector2 sc= GLKVector2Subtract(touchPos, circle.centerPosition);
+			circle.velocity = GLKVector2MultiplyScalar(sc, 3);
+		}
+		//		circle.centerPosition = touchPos;
+//    }else if (!circle.hidden) {
+//		touchingTime -= self.timeSinceLastUpdate;
+//		if (circle.radious>1.0){
+//			circle.radious = touchingTime*440;
+//		}else{
+//			circle.hidden = YES;
+//			circle.contentSize = CGSizeMake(1,1);
+//			touchingTime = 0;
+//		}
+	}
     for (ASPGLSprite *sp in self.sprites) {
         //Стенки
-        if (sp.position.x+sp.contentSize.width/2>self.viewIOSize.width){
+		if ([circle isEqual:sp]) continue;
+        if (sp.centerPosition.x+sp.contentSize.width/2>self.viewIOSize.width){
             sp.velocity=GLKVector2Make(sp.velocity.x-WALLFORCE, sp.velocity.y);
-        }else{
-            if(sp.position.x-sp.contentSize.width/2<0){
-                sp.velocity=GLKVector2Make(sp.velocity.x+WALLFORCE, sp.velocity.y);
-            }
-        }
+        }else if(sp.centerPosition.x-sp.contentSize.width/2<0){
+			sp.velocity=GLKVector2Make(sp.velocity.x+WALLFORCE, sp.velocity.y);
+		}
+        
         
         // Пол и потолок
-        if(sp.position.y<0){
+        if(sp.centerPosition.y-sp.contentSize.height/2<0){
             sp.velocity=GLKVector2Make(sp.velocity.x, sp.velocity.y+WALLFORCE);
-        }else{
-            if(sp.position.y+sp.contentSize.height>self.viewIOSize.height){
-                sp.velocity=GLKVector2Make(sp.velocity.x, sp.velocity.y-WALLFORCE);
-            }
-        }
+        }else if(sp.centerPosition.y+sp.contentSize.height>self.viewIOSize.height){
+			sp.velocity=GLKVector2Make(sp.velocity.x, sp.velocity.y-WALLFORCE);
+		}
+        
         
         [sp update:self.timeSinceLastUpdate];
     }
@@ -120,10 +136,11 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    timeSinceTouching = 0;
+    touchingTime = 0;
 	touching=YES;
 	CGPoint point=[[touches anyObject] locationInView:self.view];
 	touchPos=GLKVector2Make(point.x, self.viewIOSize.height-point.y);
+	
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -133,8 +150,7 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
 	touching=NO;
-    circle.hidden = YES;
-    circle.contentSize = CGSizeMake(1,1);
+	
 }
 
 @end

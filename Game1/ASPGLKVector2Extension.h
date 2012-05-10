@@ -12,3 +12,10 @@ static __inline__ GLKVector2 GLKVector2Normal(GLKVector2 vect);
 static __inline__ GLKVector2 GLKVector2Normal(GLKVector2 vect){
 	return GLKVector2Make(-vect.y, vect.x);
 }
+
+static __inline__ GLKVector2 GLKVector2SetLength(GLKVector2 vect, GLfloat length);
+
+static __inline__ GLKVector2 GLKVector2SetLength(GLKVector2 vect, GLfloat length){
+	vect = GLKVector2Normalize(vect);
+	return GLKVector2MultiplyScalar(vect, length);
+}
