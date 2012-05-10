@@ -17,6 +17,7 @@
 @property (nonatomic) CGSize contentSize;
 @property (assign) GLKVector2 velocity;
 @property (assign) GLfloat rotation;
+@property (assign) GLfloat angle;
 @property (assign) BOOL hidden;
 
 #pragma mark Class Methods

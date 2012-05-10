@@ -50,7 +50,7 @@ typedef struct {
 @synthesize hidden=_hidden;
 @synthesize rotation=_rotation;
 @synthesize properties=_properties;
-
+@synthesize angle=_angle;
 
 static NSMutableSet *__ASPGLFreeSprites;
 static NSCache *__ASPGLTextureCache;
@@ -197,8 +197,17 @@ respectAspectRatio:(BOOL)respectAR{
 - (GLKMatrix4) modelMatrix {
     GLKMatrix4 modelMatrix = GLKMatrix4Identity;    
 	//Движение. Координаты - от пяток.
-    modelMatrix = GLKMatrix4Translate(modelMatrix, self.position.x, self.position.y, 0);
+    modelMatrix = GLKMatrix4Translate(modelMatrix, _position.x, _position.y, 0);
 	//Смена размера (аргументы - во сколько раз менять относительно размера оригинальной текстуры)
+	//Сьезжаем к нашему origin чтобы делать все изменения относительно центра
+	GLfloat dx=self.centerPosition.x-_position.x;
+	GLfloat dy=self.centerPosition.y-_position.y;
+	modelMatrix = GLKMatrix4Translate(modelMatrix, dx, dy, 0);
+	//Делаем пакости
+	modelMatrix = GLKMatrix4RotateZ(modelMatrix, _angle);
+	//Возращаемся
+	modelMatrix = GLKMatrix4Translate(modelMatrix, -dx, -dy, 0);
+	
 	modelMatrix = GLKMatrix4Scale(modelMatrix, _contentSize.width/_textureInfo.width,_contentSize.height/_textureInfo.height, 0);
 	
     return modelMatrix;
@@ -222,6 +231,7 @@ respectAspectRatio:(BOOL)respectAR{
 	if (_hidden) return;
 	GLKVector2 curMove = GLKVector2MultiplyScalar(_velocity, dt);
 	self.position = GLKVector2Add(_position, curMove);
+	self.angle += _rotation*dt;
 	if (_debugLabel){
 		CGRect frame=_debugLabel.frame;
 		CGFloat y=_debugView.frame.size.height;

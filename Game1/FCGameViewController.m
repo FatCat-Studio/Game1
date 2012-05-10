@@ -93,24 +93,25 @@
 			circle.hidden = NO;
 			circle.centerPosition = touchPos;
 		}
-        if (circle.radious<100){
-            circle.radious = touchingTime*440;
-			circle.centerPosition = touchPos;
-			NSLog(@"%f",circle.radious);
+		GLKVector2 sc= GLKVector2Subtract(touchPos, circle.centerPosition);
+		
+        if (circle.radious<200){
+            circle.radious += 100*self.timeSinceLastUpdate;
+			circle.velocity = GLKVector2MultiplyScalar(sc, 30);
+			//circle.centerPosition = touchPos;
         }else {
-			GLKVector2 sc= GLKVector2Subtract(touchPos, circle.centerPosition);
 			circle.velocity = GLKVector2MultiplyScalar(sc, 3);
 		}
 		//		circle.centerPosition = touchPos;
-//    }else if (!circle.hidden) {
-//		touchingTime -= self.timeSinceLastUpdate;
-//		if (circle.radious>1.0){
-//			circle.radious = touchingTime*440;
-//		}else{
-//			circle.hidden = YES;
-//			circle.contentSize = CGSizeMake(1,1);
-//			touchingTime = 0;
-//		}
+    }else if (!circle.hidden) {
+		if (circle.radious>1.0){
+			circle.radious -= 100*self.timeSinceLastUpdate;
+			circle.centerPosition = touchPos;
+		}else{
+			circle.hidden = YES;
+			circle.contentSize = CGSizeMake(1,1);
+			touchingTime = 0;
+		}
 	}
     for (ASPGLSprite *sp in self.sprites) {
         //Стенки
@@ -140,7 +141,7 @@
 	touching=YES;
 	CGPoint point=[[touches anyObject] locationInView:self.view];
 	touchPos=GLKVector2Make(point.x, self.viewIOSize.height-point.y);
-	
+	circle.rotation=4;
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
