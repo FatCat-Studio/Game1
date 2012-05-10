@@ -279,6 +279,7 @@ respectAspectRatio:(BOOL)respectAR{
 }
 
 - (void) setRadious:(GLfloat)radious{
+	radious*=2.f;
 	if (aspect<0){
 		_contentSize.width=radious;
 		_contentSize.height=_contentSize.width*aspect;
@@ -289,6 +290,6 @@ respectAspectRatio:(BOOL)respectAR{
 }
 
 - (GLfloat) radious{
-	return (_contentSize.width<_contentSize.height)?_contentSize.width:_contentSize.height;
+	return (_contentSize.width<_contentSize.height)?_contentSize.width/2.f:_contentSize.height/2.f;
 }
 @end

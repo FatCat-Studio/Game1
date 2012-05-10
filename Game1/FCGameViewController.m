@@ -38,6 +38,7 @@
     double angle = 3.14/(rand()%parts+1); // Задаем угол поворота скорости
     // Поворачиваем на нужный угол.
     sp.velocity = GLKVector2MultiplyScalar([self TKRotateVectorByAngle:sp.velocity withAngle:angle],(rand()%2 ? 1 : -1)); // Вуаля
+	sp.rotation = (rand()%10-5)*2;
     [self.sprites addObject:sp]; // Запихиваем в массив шарики
 }
 
@@ -95,7 +96,7 @@
 		}
 		GLKVector2 sc= GLKVector2Subtract(touchPos, circle.centerPosition);
 		
-        if (circle.radious<200){
+        if (circle.radious<100){
             circle.radious += 100*self.timeSinceLastUpdate;
 			circle.velocity = GLKVector2MultiplyScalar(sc, 30);
 			//circle.centerPosition = touchPos;
