@@ -8,11 +8,11 @@
 
 #import "FCGameViewController.h"
 
-#define RED 5
-#define GREEN 5
-#define BLUE 5
+#define RED 20
+#define GREEN 20
+#define BLUE 20
 #define CIRCLES 3
-#define SPEED 50
+#define SPEED 100
 @implementation FCGameViewController{
     GLKVector2 touchPos;
 	BOOL touching;
@@ -107,7 +107,7 @@
     }else if (!circle.hidden) {
 		if (circle.radious>1.0){
 			circle.radious -= 100*self.timeSinceLastUpdate;
-			circle.centerPosition = touchPos;
+			//circle.centerPosition = touchPos;
 		}else{
 			circle.hidden = YES;
 			circle.contentSize = CGSizeMake(1,1);
@@ -117,18 +117,20 @@
     for (ASPGLSprite *sp in self.sprites) {
         //Стенки
 		if ([circle isEqual:sp]) continue;
-        if (sp.centerPosition.x+sp.contentSize.width/2>self.viewIOSize.width){
-            sp.velocity=GLKVector2Make(sp.velocity.x-WALLFORCE, sp.velocity.y);
-        }else if(sp.centerPosition.x-sp.contentSize.width/2<0){
-			sp.velocity=GLKVector2Make(sp.velocity.x+WALLFORCE, sp.velocity.y);
+        if (sp.rightSide>self.viewIOSize.width){
+			GLfloat differ = sp.rightSide-self.viewIOSize.width;
+            sp.velocity=GLKVector2Make(sp.velocity.x-exp(differ), sp.velocity.y);
+        }else if(sp.leftSide<0){
+			GLfloat differ = -sp.leftSide;
+			sp.velocity=GLKVector2Make(sp.velocity.x+exp(differ), sp.velocity.y);
 		}
-        
-        
         // Пол и потолок
-        if(sp.centerPosition.y-sp.contentSize.height/2<0){
-            sp.velocity=GLKVector2Make(sp.velocity.x, sp.velocity.y+WALLFORCE);
-        }else if(sp.centerPosition.y+sp.contentSize.height>self.viewIOSize.height){
-			sp.velocity=GLKVector2Make(sp.velocity.x, sp.velocity.y-WALLFORCE);
+        if(sp.bottomSide<0){
+			GLfloat differ = -sp.bottomSide;
+            sp.velocity=GLKVector2Make(sp.velocity.x, sp.velocity.y+exp(differ));
+        }else if(sp.topSide>self.viewIOSize.height){
+			GLfloat differ = sp.topSide-self.viewIOSize.height;
+			sp.velocity=GLKVector2Make(sp.velocity.x, sp.velocity.y-exp(differ));
 		}
         
         
