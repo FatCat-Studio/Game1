@@ -55,10 +55,6 @@ respectAspectRatio:(BOOL)respectAR;
 
 @interface ASPGLSprite (Coordinates)
 @property (nonatomic) GLKVector2 centerPosition;
-@property (readonly) GLfloat rightSide;
-@property (readonly) GLfloat leftSide;
-@property (readonly) GLfloat bottomSide;
-@property (readonly) GLfloat topSide;
 @end
 
 @interface ASPGLSprite (Sizes)

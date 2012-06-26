@@ -255,29 +255,11 @@ respectAspectRatio:(BOOL)respectAR{
 #import "ASPGLKVector2Extension.h"
 @implementation ASPGLSprite (Coordinates)
 @dynamic centerPosition;
-@dynamic rightSide;
-@dynamic leftSide;
-@dynamic bottomSide;
-@dynamic topSide;
-
 - (void) setCenterPosition:(GLKVector2)centerPosition{
 	self.position=GLKVector2Make(centerPosition.x-self.contentSize.width/2,centerPosition.y-self.contentSize.height/2.);
 }
-- (GLKVector2) centerPosition{
+- (GLKVector2)centerPosition{
 	return GLKVector2Make(self.position.x+self.contentSize.width/2, self.position.y+self.contentSize.height/2.);
-}
-
-- (GLfloat) rightSide{
-	return _position.x+_contentSize.width;
-}
-- (GLfloat) leftSide{
-	return _position.x;
-}
-- (GLfloat) topSide{
-	return _position.y+_contentSize.height;
-}
-- (GLfloat) bottomSide{
-	return _position.y;
 }
 @end
 
