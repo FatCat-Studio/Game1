@@ -8,11 +8,12 @@
 
 #import "FCGameViewController.h"
 
-#define RED 5
-#define GREEN 5
-#define BLUE 5
+#define RED 7
+#define GREEN 7
+#define BLUE 7
 #define CIRCLES 3
-#define SPEED 50
+#define SPEED 100
+#define DENSITY 7
 @implementation FCGameViewController{
     GLKVector2 touchPos;
 	BOOL touching;
@@ -51,6 +52,7 @@
     circle =[ASPGLSprite spriteWithTextureName:@"circle.png" effect:self.effect];
 	circle.hidden = YES;
     circle.contentSize = CGSizeMake(1,1);
+    circle.position = GLKVector2Make(-10, -10); // Задаем позицию
     [self.sprites addObject:circle]; // Запихиваем в массив круг
     // Шарики, которые ловим
     for (int i=0; i<RED; i++){
@@ -94,44 +96,75 @@
 			circle.hidden = NO;
 			circle.centerPosition = touchPos;
 		}
-		GLKVector2 sc= GLKVector2Subtract(touchPos, circle.centerPosition);
+		GLKVector2 sc = GLKVector2Subtract(touchPos, circle.centerPosition); // вектор, соединяющий центр круга и наш палец
 		
-        if (circle.radious<100){
-            circle.radious += 100*self.timeSinceLastUpdate;
-			circle.velocity = GLKVector2MultiplyScalar(sc, 30);
-			//circle.centerPosition = touchPos;
+        if (circle.radious<50){
+            circle.radious += 100*self.timeSinceLastUpdate; // круг растет
+			circle.velocity = GLKVector2MultiplyScalar(sc, 3); // направляем скорость круга в сторону пальца
         }else {
 			circle.velocity = GLKVector2MultiplyScalar(sc, 3);
 		}
-		//		circle.centerPosition = touchPos;
-    }else if (!circle.hidden) {
-		if (circle.radious>1.0){
-			circle.radious -= 100*self.timeSinceLastUpdate;
-			circle.centerPosition = touchPos;
-		}else{
-			circle.hidden = YES;
-			circle.contentSize = CGSizeMake(1,1);
-			touchingTime = 0;
-		}
+		// circle.centerPosition = touchPos;
+//    }else {
+//        if (!circle.hidden) {
+//            if (circle.radious>1.0){
+//                circle.radious -= 100*self.timeSinceLastUpdate;
+//                // circle.centerPosition = touchPos;
+//            }else{
+//                circle.hidden = YES;
+//                circle.contentSize = CGSizeMake(1,1);
+//                touchingTime = 0;
+//		}
 	}
     for (ASPGLSprite *sp in self.sprites) {
-        //Стенки
-		if ([circle isEqual:sp]) continue;
-        if (sp.centerPosition.x+sp.contentSize.width/2>self.viewIOSize.width){
+        
+        // Стенки
+        if (sp.centerPosition.x+sp.radious>self.viewIOSize.width){
             sp.velocity=GLKVector2Make(sp.velocity.x-WALLFORCE, sp.velocity.y);
-        }else if(sp.centerPosition.x-sp.contentSize.width/2<0){
+        }else if(sp.centerPosition.x-sp.radious<0){
 			sp.velocity=GLKVector2Make(sp.velocity.x+WALLFORCE, sp.velocity.y);
 		}
-        
-        
         // Пол и потолок
-        if(sp.centerPosition.y-sp.contentSize.height/2<0){
+        if(sp.centerPosition.y-sp.radious<0){
             sp.velocity=GLKVector2Make(sp.velocity.x, sp.velocity.y+WALLFORCE);
-        }else if(sp.centerPosition.y+sp.contentSize.height>self.viewIOSize.height){
+        }else if(sp.centerPosition.y+sp.radious>self.viewIOSize.height){
 			sp.velocity=GLKVector2Make(sp.velocity.x, sp.velocity.y-WALLFORCE);
 		}
         
-        
+        if ([circle isEqual:sp]) continue; // Если тарелка, пропускаем
+        // Сивухин, 1ый том. Примерно 160 стр. прочитай, будет понятнее.
+        // Начинаем играть со скоростями при столкновении:
+        GLKVector2 vect = GLKVector2Subtract(circle.centerPosition,sp.centerPosition); // вектор, соединяющий середины шариков
+        float length = GLKVector2Length(vect);
+        // Если столкнулись с тарелкой:
+        if( length < circle.radious+sp.radious ){
+            double m1 = circle.radious * DENSITY; // Масса тарелки
+            double m2 = sp.radious * DENSITY; // Масса астероида
+            // Расписываем скорости по осям:
+            GLKVector2 vect = GLKVector2Normalize(
+                                GLKVector2Subtract(circle.centerPosition,sp.centerPosition)); // Вектор, соединяющий центры
+            GLKVector2 norm = GLKVector2Normalize(GLKVector2Make(-vect.y, vect.x));
+            // Нормальная составляющая скоростей:
+            double normVelocityCircle = (circle.velocity.x*norm.x + circle.velocity.y*norm.y)/sqrt(norm.x*norm.x + norm.y*norm.y);
+            double normVelocitySp = (sp.velocity.x*norm.x + sp.velocity.y*norm.y)/sqrt(norm.x*norm.x + norm.y*norm.y);
+            // Тангенсальная составляющая скоростей:
+            double vectVelocityCircle = (circle.velocity.x*vect.x + circle.velocity.y*vect.y)/sqrt(vect.x*vect.x + vect.y*vect.y);
+            double vectVelocitySp = (sp.velocity.x*vect.x + sp.velocity.y*vect.y)/sqrt(vect.x*vect.x + vect.y*vect.y);
+            // Тангенсальные скорости после соударения:
+            double newVectVelocityCircle = (vectVelocityCircle-vectVelocitySp)*(m1-m2)/(m1+m2)+vectVelocitySp;
+            double newVectVelocitySp = (vectVelocityCircle-vectVelocitySp)*2*m1/(m1+m2)+vectVelocitySp;
+            // Возвращаемся в начальную систему координат:
+            GLKVector2 tmpVectVelocityCircle = GLKVector2MultiplyScalar(vect, newVectVelocityCircle);
+            GLKVector2 tmpNormVelocityCircle = GLKVector2MultiplyScalar(norm, normVelocityCircle);
+            GLKVector2 tmpVectVelocitySp = GLKVector2MultiplyScalar(vect, newVectVelocitySp);
+            GLKVector2 tmpNormVelocitySp = GLKVector2MultiplyScalar(norm, normVelocitySp);
+            // Новые скорости:
+            circle.velocity = GLKVector2Make(tmpNormVelocityCircle.x + tmpVectVelocityCircle.x,
+                                             tmpNormVelocityCircle.y + tmpVectVelocityCircle.y);
+            sp.velocity = GLKVector2Make(tmpNormVelocitySp.x + tmpVectVelocitySp.x,
+                                         tmpNormVelocitySp.y + tmpVectVelocitySp.y);
+            
+        }
         [sp update:self.timeSinceLastUpdate];
     }
     [circle update:self.timeSinceLastUpdate];
